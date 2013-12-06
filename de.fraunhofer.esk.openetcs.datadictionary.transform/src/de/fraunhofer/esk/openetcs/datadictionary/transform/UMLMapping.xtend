@@ -17,7 +17,14 @@ import org.eclipse.uml2.uml.resource.UMLResource
 import org.eclipse.uml2.uml.Model
 
 class UMLMapping {
-	public static var generatedTypes = new BasicEMap<String, Type>
+	private static var generatedTypes = new BasicEMap<String, Type>
+	private static var invalidNames = #[ 
+		"spare",
+		"unknown",
+		"not known",
+		"not valid",
+		"reserved",
+		"not used"]
 	
 	def public static void main(String[] args) {
 		val umlModel = createUMLModel
@@ -63,8 +70,8 @@ class UMLMapping {
 		// The decision depends on the "Special" field in "Specs
 		for (v : dictionary.definitions.varDef.variable) {
 			
-			// If special is empty, we have a primitive type
-			if (v.specs.special.empty) {
+			// If special is empty or less than 1 we have a primitive type
+			if (v.specs.special.empty || v.specs.special.length <= 1) {
 				var primitiveType = pkg.createPrimitiveType(v.name, v.description)
 				generatedTypes.put(primitiveType.name, primitiveType)
 			} else {
@@ -72,7 +79,9 @@ class UMLMapping {
 				generatedTypes.put(enumeratedType.name, enumeratedType)
 				
 				for (s : v.specs.special) {
-					enumeratedType.createOwnedLiteral(s.description)
+					if (s.description.isValidName) {
+						enumeratedType.createOwnedLiteral(s.description)
+					}
 				}
 			}
 		}
@@ -85,6 +94,15 @@ class UMLMapping {
 				dataType.createAttribute(t.name, generatedTypes.get(t.name), t.comment)
 			}
 		}
+	}
+	
+	def static boolean isValidName(String name) {
+		for (i : invalidNames) {
+			if (name.equalsIgnoreCase(i)) {
+				return false
+			}
+		}
+		return true
 	}
 	
 	def static createAttribute(DataType dataType, String name, Type type, String comment) {
