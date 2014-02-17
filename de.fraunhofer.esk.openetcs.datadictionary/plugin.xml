@@ -5,7 +5,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://DATADICTIONARY_LIBRARIES/"
-            target="platform:/plugin/de.fraunhofer.esk.openetcs.datadictionary/libraries/">
+            target="platform:/plugin/org.openetcs.datadictionary/libraries/">
       </mapping>
    </extension>
    <extension
