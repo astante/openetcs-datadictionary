@@ -1,4 +1,4 @@
-package de.fraunhofer.esk.openetcs.datadictionary.transform
+package org.openetcs.datadictionary.transform
 
 import Subset0267.util.Subset0267ResourceFactoryImpl
 import Subset0268.util.Subset0268ResourceFactoryImpl

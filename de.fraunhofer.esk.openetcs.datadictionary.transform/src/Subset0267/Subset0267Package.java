@@ -41,7 +41,7 @@ public interface Subset0267Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "platform:/resource/de.fraunhofer.esk.openetcs.datadictionary.transform/models/Subset_026_7.xsd";
+	String eNS_URI = "platform:/resource/org.openetcs.datadictionary.transform/models/Subset_026_7.xsd";
 
 	/**
 	 * The package namespace name.

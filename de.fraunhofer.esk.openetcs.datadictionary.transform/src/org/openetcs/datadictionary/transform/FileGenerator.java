@@ -1,4 +1,4 @@
-package de.fraunhofer.esk.openetcs.datadictionary.transform;
+package org.openetcs.datadictionary.transform;
 
 import org.eclipse.uml2.uml.Model;
 
